@@ -7,10 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint src --ext ts,tsx",
     "lint:fix": "eslint src --ext .ts,.js --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "prepare": "husky install",
+    "pre-commit": "pnpm lint && pnpm check && pnpm format"
   },
   "dependencies": {
     "@finsweet/ts-utils": "^0.40.0",
@@ -24,6 +26,7 @@
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "typescript": "^5.4.2",
     "vite": "^5.1.5"

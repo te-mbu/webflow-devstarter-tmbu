@@ -12,6 +12,7 @@ A modern TypeScript starter for building custom code in Webflow projects. This s
 - 🎨 [Prettier](https://prettier.io/) for code formatting
 - 🚨 [ESLint](https://eslint.org/) for code linting
 - 🔄 GitHub Actions for continuous integration
+- 🐶 [Husky](https://typicode.github.io/husky/) for Git hooks
 
 ## Project Structure
 
@@ -81,6 +82,69 @@ This ensures that all code pushed to the repository maintains quality standards.
 3. Create changesets for significant changes
 4. Write meaningful commit messages
 5. Test your code before pushing
+
+## NPM Access Token Setup
+
+To publish packages to NPM using GitHub Actions, you'll need to set up an NPM Access Token:
+
+1. Create an NPM Access Token:
+
+   - Go to [NPM Account Settings](https://www.npmjs.com/settings/[your-username]/tokens)
+   - Click "Generate New Token"
+   - Select "Automation" token type
+   - Copy the generated token
+
+2. Add the token to GitHub:
+   - Go to your repository's Settings
+   - Navigate to "Secrets and variables" > "Actions"
+   - Click "New repository secret"
+   - Name: `NPM_TOKEN`
+   - Value: Paste your NPM Access Token
+   - Click "Add secret"
+
+## CDN Deployment
+
+You can deploy your built code to a CDN for better performance. Here's how:
+
+1. Build your project:
+
+   ```bash
+   pnpm build
+   ```
+
+2. Deploy to your preferred CDN:
+
+   - [Netlify](https://www.netlify.com/): Drag and drop the `dist` folder to Netlify's dashboard
+   - [Vercel](https://vercel.com/): Connect your repository and set the build command to `pnpm build`
+   - [Cloudflare Pages](https://pages.cloudflare.com/): Connect your repository and set the build command to `pnpm build`
+
+3. After deployment, you'll get a CDN URL like:
+
+   ```
+   https://your-project.netlify.app/main.js
+   ```
+
+4. Add the script to Webflow:
+   - Go to your Webflow project settings
+   - Navigate to "Custom Code"
+   - Add a new script tag:
+     ```html
+     <script src="https://your-project.netlify.app/main.js"></script>
+     ```
+
+## Git Hooks
+
+This project uses Husky to enforce code quality before commits. The following checks run automatically before each commit:
+
+- `pnpm lint`: Ensures code follows ESLint rules
+- `pnpm check`: Verifies TypeScript types
+- `pnpm format`: Formats code with Prettier
+
+To skip these checks in an emergency, use:
+
+```bash
+git commit -m "your message" --no-verify
+```
 
 ## License
 

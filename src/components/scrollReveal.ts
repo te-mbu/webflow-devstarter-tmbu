@@ -43,7 +43,7 @@ const DEFAULT_CONFIG: AnimationConfig = {
  * Creates a GSAP timeline for an element
  */
 const createElementAnimation = (
-  element: HTMLElement, 
+  element: HTMLElement,
   config: AnimationConfig = {}
 ): gsap.core.Timeline => {
   const mergedConfig = { ...DEFAULT_CONFIG, ...config };
@@ -76,17 +76,19 @@ export const initFadeAnimations = (
   config: AnimationConfig = {}
 ): void => {
   const elements = document.querySelectorAll<HTMLElement>(selector);
-  
+
   elements.forEach((element) => {
     const timeline = createElementAnimation(element, config);
-    
+
     // Create ScrollTrigger
     ScrollTrigger.create({
       trigger: element,
       start: config.scrollTrigger?.start ?? DEFAULT_CONFIG.scrollTrigger!.start,
       end: config.scrollTrigger?.end ?? DEFAULT_CONFIG.scrollTrigger!.end,
-      toggleActions: config.scrollTrigger?.toggleActions ?? DEFAULT_CONFIG.scrollTrigger!.toggleActions,
+      toggleActions:
+        config.scrollTrigger?.toggleActions ??
+        DEFAULT_CONFIG.scrollTrigger!.toggleActions,
       animation: timeline,
     });
   });
-}; 
+};
