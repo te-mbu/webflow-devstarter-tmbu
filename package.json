@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "check": "tsc --noEmit",
     "prepare": "husky install",
-    "pre-commit": "pnpm lint && pnpm check && pnpm format"
+    "pre-commit": "pnpm format && pnpm lint && pnpm check"
   },
   "dependencies": {
     "@finsweet/ts-utils": "^0.40.0",
