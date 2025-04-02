@@ -5,12 +5,12 @@ import { initFadeAnimations } from './components/scrollReveal';
 if (!window.Webflow) {
   const callbacks: Array<() => void> = [];
   const originalPush = callbacks.push.bind(callbacks);
-  
+
   callbacks.push = (callback: () => void) => {
     callback();
     return originalPush(callback);
   };
-  
+
   window.Webflow = callbacks;
 }
 
