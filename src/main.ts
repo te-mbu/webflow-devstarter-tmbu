@@ -1,24 +1,29 @@
-declare const Webflow: {
-  push: (callback: () => void) => void;
-};
+import type { Webflow as WebflowType } from '@finsweet/ts-utils';
 
 import { initFadeAnimations } from './components/scrollReveal';
 
-// Wrap all code in Webflow.push() for compatibility
-Webflow.push(() => {
-  // Demo log
-  console.log('Hello Webflow!');
+if (!window.Webflow) {
+  const callbacks: Array<() => void> = [];
+  const originalPush = callbacks.push.bind(callbacks);
+  
+  callbacks.push = (callback: () => void) => {
+    callback();
+    return originalPush(callback);
+  };
+  
+  window.Webflow = callbacks;
+}
 
-  // Initialize animations when DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
-    // Default fade-in animation
-    // initFadeAnimations();
+export const Webflow = window.Webflow as WebflowType;
 
-    // Example: Custom animation for specific elements
-    initFadeAnimations('.fade-in', {
-      startY: 50,
-      duration: 1.2,
-      ease: 'power3.out',
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.Webflow) {
+    window.Webflow.push(() => {
+      initFadeAnimations('.fade-in', {
+        startY: 50,
+        duration: 1,
+        ease: 'power3.out',
+      });
     });
-  });
+  }
 });

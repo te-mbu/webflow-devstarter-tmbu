@@ -1,82 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webflow Dev Starter - Test Page</title>
+  <title>Webflow Dev Starter</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <style>
+    :root {
+      --primary-blue: #0066FF;
+      --background: #111111;
+      --text: #ffffff;
+      --grid-color: rgba(255, 255, 255, 0.05);
+      --spacing-xs: clamp(0.75rem, 2vw, 1rem);
+      --spacing-sm: clamp(1rem, 3vw, 1.5rem);
+      --spacing-md: clamp(2rem, 4vw, 3rem);
+      --spacing-lg: clamp(3rem, 6vw, 4rem);
+      --spacing-xl: clamp(4rem, 8vw, 6rem);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-      color: #333;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
       line-height: 1.5;
+      background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
+
     section {
       min-height: 100vh;
-      padding: 4rem 2rem;
+      padding: var(--spacing-xl) var(--spacing-md);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
     }
-    section:nth-child(odd) {
-      background: #f5f5f5;
-    }
+
     .container {
-      max-width: 800px;
+      max-width: min(1200px, 90%);
       margin: 0 auto;
+      width: 100%;
     }
+
     h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: var(--spacing-md);
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: -0.02em;
     }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: var(--spacing-md);
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      margin-bottom: var(--spacing-xs);
+      font-weight: 600;
+    }
+
     p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      margin-bottom: var(--spacing-md);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      max-width: min(600px, 100%);
+      margin-left: auto;
+      margin-right: auto;
     }
-    .card {
-      background: white;
-      padding: 2rem;
+
+    .highlight {
+      color: var(--primary-blue);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+      width: 100%;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: var(--spacing-md);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-blue);
+    }
+
+    .feature-card p {
+      margin-bottom: 0;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--primary-blue);
+      color: white;
+      padding: var(--spacing-sm) var(--spacing-md);
       border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin: 1rem;
-      max-width: 300px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      position: relative;
+      isolation: isolate;
+      border: 1px solid var(--primary-blue);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 2px 4px rgba(0, 102, 255, 0.1);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: white;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: -1;
+      border-radius: 7px;
+    }
+
+    .cta-button:hover {
+      color: var(--primary-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 102, 255, 0.15);
+    }
+
+    .cta-button:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .social-links {
+      position: fixed;
+      bottom: var(--spacing-md);
+      right: var(--spacing-md);
+      display: flex;
+      gap: var(--spacing-sm);
+      z-index: 100;
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(8px);
+      padding: var(--spacing-xs);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .social-link {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .social-link span {
+      display: none;
+    }
+
+    .social-link:hover {
+      color: var(--primary-blue);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: var(--spacing-lg) var(--spacing-sm);
+      }
+      
+      .features {
+        gap: var(--spacing-sm);
+      }
+      
+      .feature-card {
+        padding: var(--spacing-sm);
+      }
+
+      .social-links {
+        bottom: var(--spacing-sm);
+        right: var(--spacing-sm);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        max-width: 95%;
+      }
     }
   </style>
 </head>
 <body>
   <section>
     <div class="container">
-      <h1 class="fade-in">Welcome to Webflow Dev Starter</h1>
-      <p class="fade-in">A minimal TypeScript starter for Webflow custom code integration.</p>
+      <h1 class="fade-in">Webflow <span class="highlight">DevStarter</span></h1>
+      <p class="fade-in">Un kit de démarrage optimisé pour développer des intégrations Webflow avec TypeScript et des outils modernes.</p>
+      <a href="#features" class="cta-button fade-in">Découvrir les fonctionnalités</a>
     </div>
   </section>
 
-  <section>
+  <div class="social-links fade-in">
+    <a href="https://www.linkedin.com/in/terence-mbu-freelance-webflow/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+    <a href="https://github.com/te-mbu/webflow-devstarter-tmbu" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+      </svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+
+  <section id="features">
     <div class="container">
-      <h2 class="fade-in">Animation Demo</h2>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-        <div class="card fade-in">
-          <h3>Feature 1</h3>
-          <p>TypeScript + Vite setup for modern development</p>
+      <h2 class="fade-in">Stack technique</h2>
+      <div class="features">
+        <div class="feature-card fade-in">
+          <h3>Core Stack</h3>
+          <p>TypeScript + Vite + GSAP pour des performances optimales</p>
         </div>
-        <div class="card fade-in">
-          <h3>Feature 2</h3>
-          <p>GSAP animations with ScrollTrigger</p>
+        <div class="feature-card fade-in">
+          <h3>Qualité de code</h3>
+          <p>ESLint, Prettier et TypeScript strict pour un code robuste</p>
         </div>
-        <div class="card fade-in">
-          <h3>Feature 3</h3>
-          <p>ESLint + Prettier for clean code</p>
+        <div class="feature-card fade-in">
+          <h3>Workflow Git</h3>
+          <p>Husky et Changesets pour un versioning maîtrisé</p>
+        </div>
+        <div class="feature-card fade-in">
+          <h3>Webflow Utils</h3>
+          <p>@finsweet/ts-utils intégré pour l'écosystème Webflow</p>
+        </div>
+        <div class="feature-card fade-in">
+          <h3>Scripts NPM</h3>
+          <p>Dev, build, preview et check en une commande</p>
+        </div>
+        <div class="feature-card fade-in">
+          <h3>Animations</h3>
+          <p>GSAP 3.12 avec ScrollTrigger pour des animations fluides</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <h2 class="fade-in">Getting Started</h2>
-      <p class="fade-in">Check the README.md for instructions on how to use this starter in your Webflow projects.</p>
     </div>
   </section>
 

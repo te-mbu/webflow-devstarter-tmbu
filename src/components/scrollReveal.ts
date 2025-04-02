@@ -35,7 +35,7 @@ const DEFAULT_CONFIG: AnimationConfig = {
   scrollTrigger: {
     start: 'top bottom-=100px',
     end: 'bottom top',
-    toggleActions: 'play none none reverse',
+    toggleActions: 'play none none none',
   },
 };
 
