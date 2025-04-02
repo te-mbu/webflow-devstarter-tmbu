@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webflow Dev Starter - Test Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #333;
+      line-height: 1.5;
+    }
+    section {
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    section:nth-child(odd) {
+      background: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 1rem;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="container">
+      <h1 class="fade-in">Welcome to Webflow Dev Starter</h1>
+      <p class="fade-in">A minimal TypeScript starter for Webflow custom code integration.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="fade-in">Animation Demo</h2>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+        <div class="card fade-in">
+          <h3>Feature 1</h3>
+          <p>TypeScript + Vite setup for modern development</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Feature 2</h3>
+          <p>GSAP animations with ScrollTrigger</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Feature 3</h3>
+          <p>ESLint + Prettier for clean code</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="fade-in">Getting Started</h2>
+      <p class="fade-in">Check the README.md for instructions on how to use this starter in your Webflow projects.</p>
+    </div>
+  </section>
+
+  <!-- During development, use the Vite dev server -->
+  <script type="module" src="http://localhost:5173/src/main.ts"></script>
+  
+  <!-- For production, use the built file -->
+  <!-- <script src="../dist/main.js"></script> -->
+</body>
+</html> 
