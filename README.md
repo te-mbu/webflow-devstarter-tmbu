@@ -146,6 +146,89 @@ To skip these checks in an emergency, use:
 git commit -m "your message" --no-verify
 ```
 
+## Webflow.push() Usage
+
+When adding custom code to Webflow projects, it's important to ensure your code runs after Webflow has finished loading. The `Webflow.push()` function provides a safe way to execute your code at the right time.
+
+Example usage:
+
+```ts
+Webflow.push(() => {
+  // Your code here
+  console.log('Hello Webflow!');
+});
+```
+
+This ensures your code runs after Webflow's core functionality is initialized, preventing potential race conditions and timing issues.
+
+## Deploying with jsDelivr CDN
+
+You can serve your built JavaScript files through jsDelivr's CDN for better performance and reliability. Here's how:
+
+1. Push your `dist/main.js` file to a public GitHub repository
+2. Use the following script tag in Webflow:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/USERNAME/REPO@VERSION/dist/main.js"></script>
+```
+
+Replace:
+
+- `USERNAME` with your GitHub username
+- `REPO` with your repository name
+- `VERSION` with your release tag (e.g., v1.0.0)
+
+Add this script in Webflow under Site Settings > Custom Code > Before </body> tag.
+
+## 🔐 NPM Access Token (for Changesets auto-publish)
+
+To enable automatic publishing via Changesets when PRs are merged:
+
+1. Create an NPM Access Token:
+
+   - Go to [npmjs.com](https://www.npmjs.com/)
+   - Navigate to Account Settings > Access Tokens
+   - Generate a new Automation token
+   - Copy the token
+
+2. Add to GitHub Repository Secrets:
+   - Go to your repository Settings
+   - Navigate to Secrets and Variables > Actions
+   - Create a new repository secret
+   - Name it `NPM_TOKEN`
+   - Paste your NPM token as the value
+
+This setup allows GitHub Actions to automatically publish new versions when Changeset PRs are merged.
+
+## Contributing
+
+Follow these best practices when contributing to the project:
+
+1. **Use Feature Branches**
+
+   - Create a new branch for each feature or fix
+   - Use descriptive branch names (e.g., `feature/add-animation`, `fix/button-click`)
+
+2. **Document Changes**
+
+   - Run `pnpm changeset` before opening a PR
+   - Describe your changes clearly in the changeset
+   - Include both technical details and user-facing impacts
+
+3. **Pull Request Process**
+
+   - Open a pull request against the main branch
+   - Wait for CI checks to complete
+   - Address any review feedback
+   - Ensure all tests pass
+
+4. **Release Process**
+   - After PR approval and merge, Changesets will create a release PR
+   - This PR will include version bumps and changelog updates
+   - Merging this PR will trigger automatic publishing
+
+Remember to maintain code quality standards and follow the existing patterns in the codebase.
+
 ## License
 
 MIT
