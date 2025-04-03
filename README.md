@@ -229,6 +229,24 @@ Follow these best practices when contributing to the project:
 
 Remember to maintain code quality standards and follow the existing patterns in the codebase.
 
+## 🧠 Cursor AI Usage
+
+This project includes a `.cursor-rules.md` file at the root which defines comprehensive development rules for AI-assisted workflows using Cursor. This ensures that all code generation and modifications maintain consistent quality and structure across the project.
+
+The rules file covers:
+
+- Project architecture and folder organization
+- Component structure and naming conventions
+- Code style and TypeScript best practices
+- DOM targeting and Webflow integration patterns
+- Library usage and implementation standards
+
+When working with Cursor AI, reference these rules by mentioning the `.cursor-rules.md` file in your prompts. For example:
+
+> "Please create a new animation module for `[data-reveal]` elements using GSAP, following the conventions in `.cursor-rules.md`."
+
+This helps maintain consistency between manual and AI-assisted contributions, ensuring all code follows the project's established patterns and quality standards.
+
 ## License
 
 MIT
