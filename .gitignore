@@ -9,6 +9,7 @@ build/
 # Environment files
 .env
 .env.*
+.cursor/
 
 # IDE files
 .vscode/

@@ -2,6 +2,25 @@
 
 A modern TypeScript starter for building custom code in Webflow projects. This starter kit provides a robust development environment with best practices and tooling for building maintainable, type-safe custom code.
 
+## Table of Contents
+
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Development Workflow](#development-workflow)
+- [Version Management](#version-management)
+- [Continuous Integration](#continuous-integration)
+- [Best Practices](#best-practices)
+- [NPM Access Token Setup](#npm-access-token-setup)
+- [CDN Deployment](#cdn-deployment)
+- [Git Hooks](#git-hooks)
+- [Webflow.push() Usage](#webflowpush-usage)
+- [Deploying with jsDelivr CDN](#deploying-with-jsdelivr-cdn)
+- [NPM Access Token (for Changesets auto-publish)](#-npm-access-token-for-changesets-auto-publish)
+- [MCP Integration (Managed Custom Code Preview)](#-mcp-integration-managed-custom-code-preview)
+- [Contributing](#contributing)
+
 ## Features
 
 - 🚀 [Vite](https://vitejs.dev/) for blazing-fast development and building
@@ -199,6 +218,38 @@ To enable automatic publishing via Changesets when PRs are merged:
    - Paste your NPM token as the value
 
 This setup allows GitHub Actions to automatically publish new versions when Changeset PRs are merged.
+
+## 🧪 MCP Integration (Managed Custom Code Preview)
+
+This project supports Webflow MCP for real-time development without manually copy-pasting JavaScript into Webflow.
+
+### Setup
+
+Install the MCP CLI:
+
+```bash
+pnpm add -D @webflow/mcp
+```
+
+Start the local development server and MCP:
+
+```bash
+pnpm dev
+pnpm mcp
+```
+
+The latest dist/main.js will be injected into your Webflow site through a secure preview tunnel.
+
+You must be part of the MCP beta program or have access via Cursor Pro or Webflow Enterprise.
+
+Follow .cursor-rules.md conventions for all architecture, file naming, and typing rules.
+
+Optional: Create a webflow/ folder for storing metadata (site ID, page IDs, selectors, notes, etc.) if needed for automation.
+
+### Usage
+
+- `pnpm build` compiles your script
+- `pnpm mcp` opens a preview tunnel and injects the script live into Webflow
 
 ## Contributing
 
